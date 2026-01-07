@@ -1,4 +1,4 @@
-# My-Private-Cloud
+# On the road of my private Cloud
 Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 # Hardwares
@@ -16,3 +16,16 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 - **Forward Proxy**: Sits between clients and the internet. Clients connect through it to reach external servers. **Hides client identity**.
 - **Reverse Proxy**: Sits between the internet and your servers. External clients connect to it, it forwards to your backend. **Hides server identity/topology**.
 - **Cloudflare Tunnel** exposes our cluster to internet
+
+# Implementation
+1. Generate **SSH Keys**
+2. Flash Both **MicroSD Cards**
+  - For Master Node (Card 1)
+  - For Worker Node (Card 2)
+3. Configure **TP-Link Travel Router**
+  - Setup DHCP Reservations
+4. Physical Assembly
+  - PoE Switch Setup
+  - Connect Router to Switch
+5. First Boot - Master Node
+6. First Boot - Worker Node
