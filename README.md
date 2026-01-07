@@ -20,12 +20,12 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 # Implementation
 1. Generate **SSH Keys**
 2. Flash Both **MicroSD Cards**
-  - For Master Node (Card 1)
-  - For Worker Node (Card 2)
+    - For Master Node (Card 1)
+    - For Worker Node (Card 2)
 3. Configure **TP-Link Travel Router**
-  - Setup DHCP Reservations
+    - Setup DHCP Reservations
 4. Physical Assembly
-  - PoE Switch Setup
-  - Connect Router to Switch
+    - PoE Switch Setup
+    - Connect Router to Switch
 5. First Boot - Master Node
 6. First Boot - Worker Node
