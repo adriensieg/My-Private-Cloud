@@ -18,14 +18,21 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 - **Cloudflare Tunnel** exposes our cluster to internet
 
 # Implementation
-1. Generate **SSH Keys**
-2. Flash Both **MicroSD Cards**
+
+1. [Generate **SSH Keys**]
+2. [Flash Both **MicroSD Cards**]
     - For Master Node (Card 1)
     - For Worker Node (Card 2)
-3. Configure **TP-Link Travel Router**
+3. [Configure **TP-Link Travel Router**]
     - Setup DHCP Reservations
-4. Physical Assembly
+4. [**Physical Assembly**]
     - PoE Switch Setup
     - Connect Router to Switch
-5. First Boot - Master Node
-6. First Boot - Worker Node
+5. [First **Boot** - Master Node]
+6. [First **Boot** - Worker Node]
+7. [**Update** Both Nodes]
+8. [Install **K3s Master**]
+9. [Install **K3s Worker**]
+10. [**Verify** Cluster]
+11. [Setup Local **kubectl Access**]
+12. [Deploy **Test Application**]
