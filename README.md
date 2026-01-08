@@ -43,7 +43,7 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 - [K. Setup Local **kubectl Access**]()
 - [L. Deploy **Test Application**]()
 
-#### A. Generate **SSH Keys**
+### A. Generate **SSH Keys**
 
 1. Generate SSH key
 ```
@@ -55,7 +55,7 @@ cat ~/.ssh/k3s-cluster.pub
 ```
 3. Copy the entire output - it starts with `ssh-ed25519 AAAA...`
 
-#### B. Flash Both MicroSD Cards
+### B. Flash Both MicroSD Cards
 
 ##### For Master Node (Card 1)
 1. Insert first microSD card into compute
@@ -172,9 +172,64 @@ ethernets:
 26. Save and eject card
 27. Label card: **"NODE-1"**
 
-#### C.Configure TP-Link Travel Router
+### C.Configure TP-Link Travel Router
 
+##### Physical Setup
+1. Plug TP-Link TL-WR902AC into power
+2. Wait for WiFi LED to stabilize
 
+##### Connect to Router
+3. On your laptop, connect to WiFi: **"TP-LINK_XXXX"** (check router label for exact name)
+4. Default password is on the router label
+5. Open browser → Go to: **http://tplinkwifi.net** or **192.168.0.1**
+6. Login with default credentials (usually admin/admin)
+
+##### Basic Configuration
+7. Go to **"Quick Setup"**
+8. Select **"Travel Router Mode (Default)"** → Next
+9. Choose **"WiFi Connection"**
+10. Select your Xfinity home WiFi network
+11. Enter your home WiFi password
+12. Click **"Next"** → **"Finish"**
+13. Wait for router to reboot (2-3 minutes)
+
+##### Reconnect to Travel Router
+14. Reconnect to **"TP-LINK_XXXX"** WiFi
+15. Login again to **http://tplinkwifi.net**
+
+##### Change Admin Password
+16. Go to **"System Tools"** → **"Password"**
+17. Set new strong password
+18. Save
+
+##### Configure LAN Settings
+19. Go to **"Network"** → **"LAN"**
+20. Change IP Address to: **10.42.42.1**
+21. Subnet Mask: **255.255.255.0**
+22. Save
+23. Router will reboot
+24. Wait 2 minutes
+
+##### Reconnect with New IP
+25. Disconnect from WiFi
+26. Reconnect to TP-LINK WiFi
+27. New router address: **http://10.42.42.1**
+28. Login with new password
+
+##### Setup DHCP Reservations
+29. Go to **"DHCP"** → **"Address Reservation"**
+30. Click **"Add New"**
+31. **For Master:**
+    - MAC Address: (leave blank for now)
+    - Reserved IP: **10.42.42.100**
+    - Status: **Enabled**
+    - Click **"Save"**
+32. Click **"Add New"** again
+33. **For Worker:**
+    - MAC Address: (leave blank)
+    - Reserved IP: **10.42.42.101**
+    - Status: **Enabled**
+    - Click **"Save"**
 
 
 
