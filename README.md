@@ -30,9 +30,9 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 - [B. Flash Both **MicroSD Cards**](https://github.com/adriensieg/My-Private-Cloud/blob/master/README.md#b-flash-both-microsd-cards)
   
-- [C. Configure **TP-Link Travel Router**]
+- [C. Configure **TP-Link Travel Router**]()
   
-- [D. **Physical Assembly**]
+- [D. **Physical Assembly**]()
 
 - [E. First **Boot** - Master Node]()
 - [F. First **Boot** - Worker Node]()
@@ -157,7 +157,7 @@ runcmd:
   - systemctl reboot
 ```
 
-Replace YOUR_SSH_PUBLIC_KEY_HERE with your public key
+Replace `OUR_SSH_PUBLIC_KEY_HERE` with our public key
 Save and close
 Edit network-config (same as master):
 
