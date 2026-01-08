@@ -73,7 +73,7 @@ cat ~/.ssh/k3s-cluster.pub
 12. Find and open file: `user-data`
 13. Replace entire contents with:
 
-```
+```yaml
 #cloud-config
 ssh_pwauth: false
 
