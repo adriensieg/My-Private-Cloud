@@ -242,8 +242,24 @@ ethernets:
     - Status: **Enabled**
     - Click **"Save"**
 
+### D.Physical Assembly
 
+##### PoE Switch Setup
+1. Place PoE switch on flat surface
+2. Connect switch to power
+3. **Do NOT connect anything yet**
 
+##### Connect Router to Switch
+4. Take one Cat6 cable
+5. Plug one end into TP-Link Router **LAN port**
+6. Plug other end into PoE Switch **port 1**
+
+##### Note on Raspberry Pi Power
+⚠️ **Important:** Our Raspberry Pi 4 Model B units **DO NOT support Power over Ethernet** by default. We need:
+- Either: Official USB-C power supplies for each Pi
+- Or: PoE HAT adapters (hardware accessory that adds PoE capability)
+
+**For this guide, we'll assume you have USB-C power supplies.**
 
 
 
