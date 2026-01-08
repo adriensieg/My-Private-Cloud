@@ -154,11 +154,22 @@ runcmd:
   - systemctl reboot
 ```
 
+Replace YOUR_SSH_PUBLIC_KEY_HERE with your public key
+Save and close
+Edit network-config (same as master):
 
+```yaml
+version: 2
+ethernets:
+  eth0:
+    dhcp4: true
+    optional: true
+```
 
+26. Save and eject card
+27. Label card: **"NODE-1"**
 
-
-
+#### C.Configure TP-Link Travel Router
 
 
 
