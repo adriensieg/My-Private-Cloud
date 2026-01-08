@@ -19,20 +19,84 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 # Implementation
 
-1. [Generate **SSH Keys**]
-2. [Flash Both **MicroSD Cards**]
+A. [Generate **SSH Keys**]()
+B. [Flash Both **MicroSD Cards**]
     - For Master Node (Card 1)
     - For Worker Node (Card 2)
-3. [Configure **TP-Link Travel Router**]
+C. [Configure **TP-Link Travel Router**]
     - Setup DHCP Reservations
-4. [**Physical Assembly**]
+D. [**Physical Assembly**]
     - PoE Switch Setup
     - Connect Router to Switch
-5. [First **Boot** - Master Node]
-6. [First **Boot** - Worker Node]
-7. [**Update** Both Nodes]
-8. [Install **K3s Master**]
-9. [Install **K3s Worker**]
-10. [**Verify** Cluster]
-11. [Setup Local **kubectl Access**]
-12. [Deploy **Test Application**]
+E. [First **Boot** - Master Node]
+F. [First **Boot** - Worker Node]
+G. [**Update** Both Nodes]
+H. [Install **K3s Master**]
+I. [Install **K3s Worker**]
+J. [**Verify** Cluster]
+K. [Setup Local **kubectl Access**]
+L. [Deploy **Test Application**]
+
+#### A. Generate **SSH Keys**
+
+1. Generate SSH key
+```
+ssh-keygen -t ed25519 -C "k3s-cluster" -f ~/.ssh/k3s-cluster
+```
+2. Display public key (we'll need this)
+```
+cat ~/.ssh/k3s-cluster.pub
+```
+3. Copy the entire output - it starts with `ssh-ed25519 AAAA...`
+
+#### B. Flash Both MicroSD Cards
+
+##### For Master Node (Card 1)
+1. Insert first microSD card into compute
+2. Open Raspberry Pi Imager
+3. Click "Choose OS" → "Other general-purpose OS" → "Ubuntu" → "Ubuntu Server 22.04.3 LTS (64-bit)"
+4. Click "Choose Storage" → Select your microSD card
+5. Click ⚙️ gear icon (Advanced Options) - Configure:
+    - ❌ Uncheck "Set hostname"
+    - ❌ Uncheck "Enable SSH" (we'll use cloud-init)
+    - ❌ Uncheck "Set username and password"
+    - ❌ Uncheck "Configure wireless LAN"
+    - ❌ Uncheck "Set locale settings"
+6. Click "Save"
+7. Click "Write" → Confirm
+8. Wait for flashing to complete
+9. Do NOT eject yet
+
+##### Modify Cloud-Init for Master (Card 1 for Master Node)
+10. Remove and reinsert the microSD card
+11. Open the "system-boot" partition (should auto-mount)
+12. Find and open file: `user-data`
+13. Replace entire contents with:
+
+```
+#cloud-config
+ssh_pwauth: false
+
+groups:
+  - ubuntu: [root, sys]
+
+users:
+  - default
+  - name: adsieg
+    gecos: adsieg
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    lock_passwd: true
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - YOUR_SSH_PUBLIC_KEY_HERE
+
+hostname: adsieg-k3s-master
+
+# Enable cgroups
+bootcmd:
+  - sed -i 's/$/ cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory/' /boot/firmware/cmdline.txt
+
+runcmd:
+  - systemctl reboot
+```
