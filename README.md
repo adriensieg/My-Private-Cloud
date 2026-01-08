@@ -17,11 +17,22 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 - **cgroup**
 - **Router**
 - **Switch**
-- **Model**
+- **Modem**
 - **POE Injector**
+- **DHCP**
+
 - **Forward Proxy**: Sits between clients and the internet. Clients connect through it to reach external servers. **Hides client identity**.
 - **Reverse Proxy**: Sits between the internet and your servers. External clients connect to it, it forwards to your backend. **Hides server identity/topology**.
 - **Cloudflare Tunnel** exposes our cluster to internet
+    - Cloudflare Tunnel offers two routing options: **DNS route** and **IP route**
+
+-	Difference between **CloudFare tunnel** vs. **VPN**
+  
+- **Internet Aware Proxy (IAP)**: Intercepts traffic for multiple protocols, including SSH, Kubernetes, HTTPS, and databases, and ensures that only authenticated clients can connect to target resources.
+
+- **Thread-Safe Backend** - Race condition and deadlock prevention
+
+
 
 
 # Implementation
