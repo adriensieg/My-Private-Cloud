@@ -14,7 +14,11 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 # Concepts
 - **SSH**
-- cgroup
+- **cgroup**
+- **Router**
+- **Switch**
+- **Model**
+- **POE Injector**
 - **Forward Proxy**: Sits between clients and the internet. Clients connect through it to reach external servers. **Hides client identity**.
 - **Reverse Proxy**: Sits between the internet and your servers. External clients connect to it, it forwards to your backend. **Hides server identity/topology**.
 - **Cloudflare Tunnel** exposes our cluster to internet
