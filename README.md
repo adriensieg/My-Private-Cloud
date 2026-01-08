@@ -27,7 +27,7 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 # Implementation
 
 A. [Generate **SSH Keys**]()
-B. [Flash Both **MicroSD Cards**]
+B. [Flash Both **MicroSD Cards**](https://github.com/adriensieg/My-Private-Cloud/blob/master/README.md#b-flash-both-microsd-cards)
     - For Master Node (Card 1)
     - For Worker Node (Card 2)
 C. [Configure **TP-Link Travel Router**]
