@@ -26,23 +26,23 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 # Implementation
 
-A. [Generate **SSH Keys**]()
-B. [Flash Both **MicroSD Cards**](https://github.com/adriensieg/My-Private-Cloud/blob/master/README.md#b-flash-both-microsd-cards)
-    - For Master Node (Card 1)
-    - For Worker Node (Card 2)
-C. [Configure **TP-Link Travel Router**]
-    - Setup DHCP Reservations
+- [A. Generate **SSH Keys**]()
+- [B. Flash Both **MicroSD Cards**](https://github.com/adriensieg/My-Private-Cloud/blob/master/README.md#b-flash-both-microsd-cards)
+        - For Master Node (Card 1)
+        - For Worker Node (Card 2)
+- [C. Configure **TP-Link Travel Router**]
+        - Setup DHCP Reservations
 D. [**Physical Assembly**]
-    - PoE Switch Setup
-    - Connect Router to Switch
-E. [First **Boot** - Master Node]
-F. [First **Boot** - Worker Node]
-G. [**Update** Both Nodes]
-H. [Install **K3s Master**]
-I. [Install **K3s Worker**]
-J. [**Verify** Cluster]
-K. [Setup Local **kubectl Access**]
-L. [Deploy **Test Application**]
+        - PoE Switch Setup
+        - Connect Router to Switch
+[First **Boot** - Master Node]
+[First **Boot** - Worker Node]
+[**Update** Both Nodes]
+[Install **K3s Master**]
+[Install **K3s Worker**]
+[**Verify** Cluster]
+[Setup Local **kubectl Access**]
+[Deploy **Test Application**]
 
 #### A. Generate **SSH Keys**
 
