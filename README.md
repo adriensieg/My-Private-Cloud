@@ -13,9 +13,12 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 
 # Concepts
+- **SSH**
+- cgroup
 - **Forward Proxy**: Sits between clients and the internet. Clients connect through it to reach external servers. **Hides client identity**.
 - **Reverse Proxy**: Sits between the internet and your servers. External clients connect to it, it forwards to your backend. **Hides server identity/topology**.
 - **Cloudflare Tunnel** exposes our cluster to internet
+
 
 # Implementation
 
@@ -56,22 +59,23 @@ cat ~/.ssh/k3s-cluster.pub
 2. Open Raspberry Pi Imager
 3. Click "Choose OS" → "Other general-purpose OS" → "Ubuntu" → "Ubuntu Server 22.04.3 LTS (64-bit)"
 4. Click "Choose Storage" → Select your microSD card
-5. Click ⚙️ gear icon (Advanced Options) - Configure:
+5. Click ⚙️ gear icon (Advanced Options)
+6. Configure:
     - ❌ Uncheck "Set hostname"
     - ❌ Uncheck "Enable SSH" (we'll use cloud-init)
     - ❌ Uncheck "Set username and password"
     - ❌ Uncheck "Configure wireless LAN"
     - ❌ Uncheck "Set locale settings"
-6. Click "Save"
-7. Click "Write" → Confirm
-8. Wait for flashing to complete
-9. Do NOT eject yet
+7. Click "Save"
+8. Click "Write" → Confirm
+9. Wait for flashing to complete
+10. Do NOT eject yet
 
 ##### Modify Cloud-Init for Master (Card 1 for Master Node)
-10. Remove and reinsert the microSD card
-11. Open the "system-boot" partition (should auto-mount)
-12. Find and open file: `user-data`
-13. Replace entire contents with:
+11. Remove and reinsert the microSD card
+12. Open the "system-boot" partition (should auto-mount)
+13. Find and open file: `user-data`
+14. Replace entire contents with:
 
 ```yaml
 #cloud-config
@@ -100,3 +104,84 @@ bootcmd:
 runcmd:
   - systemctl reboot
 ```
+
+15. Replace `OUR_SSH_PUBLIC_KEY_HERE` with our public key
+16. Save and close
+17. Edit network-config file:
+
+```YAML
+version: 2
+ethernets:
+  eth0:
+    dhcp4: true
+    optional: true
+```
+
+18. Save and eject card
+19. Label card: "MASTER"
+
+##### For Worker Node (Card 2)
+
+20. Insert second microSD card
+21. Repeat steps 2-10 above
+22. Modify user-data:
+
+```yaml
+#cloud-config
+ssh_pwauth: false
+
+groups:
+  - ubuntu: [root, sys]
+
+users:
+  - default
+  - name: adsieg
+    gecos: adsieg
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: sudo
+    lock_passwd: true
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - YOUR_SSH_PUBLIC_KEY_HERE
+
+hostname: adsieg-k3s-node-1
+
+# Enable cgroups
+bootcmd:
+  - sed -i 's/$/ cgroup_enable=cpuset cgroup_memory=1 cgroup_enable=memory/' /boot/firmware/cmdline.txt
+
+runcmd:
+  - systemctl reboot
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
