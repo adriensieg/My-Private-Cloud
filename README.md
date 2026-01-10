@@ -41,7 +41,7 @@ Building a bare-metal Kubernetes cluster on Raspberry Pis
 
 - [B. Flash Both **MicroSD Cards**](https://github.com/adriensieg/My-Private-Cloud/blob/master/README.md#b-flash-both-microsd-cards)
   
-- [C. Configure **TP-Link Travel Router**]()
+- [C. Configure **TP-Link Travel Router**](https://github.com/adriensieg/My-Private-Cloud/tree/master?tab=readme-ov-file#cconfigure-tp-link-travel-router)
   
 - [D. **Physical Assembly**]()
 
