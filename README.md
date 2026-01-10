@@ -263,8 +263,25 @@ ethernets:
 
 
 
+# Tricks
+
+#### When I am on my Mac OS - I can access `user-data`
+```
+cd /Volumes/system-boot 
+code user-data   
+code network-config
+```
+
+#### My personal Router Web Interface is available under http://10.0.0.1/
+<img width="50%" height="50%" alt="image" src="https://github.com/user-attachments/assets/fc9ed6c0-ce6a-4f10-a8d8-e3336fc71a63" />
 
 
+#### How to authenticate to my raspberry pi
+
+```
+ssh -i ~/.ssh/k3s-cluster adsieg@169.254.1.50
+ssh -i ~/.ssh/k3s-cluster adsieg@10.0.0.100
+```
 
 
 
